@@ -108,6 +108,8 @@ This filter allows you to change the URL of the redirect page after form is subm
 $redirect = apply_filters( 'rwmb_frontend_redirect', $redirect, $config );
 ```
 
+Note that `$config['post_id']` has the submitted post ID.
+
 ### Form actions
 
 `rwmb_frontend_before_process`
@@ -131,6 +133,8 @@ add_action( 'rwmb_frontend_after_process', function( $config ) {
 } );
 ```
 
+Note that `$config['post_id']` has the submitted post ID.
+
 `rwmb_frontend_before_form`
 
 This action fires before form output. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
@@ -146,6 +150,14 @@ This action fires before the confirmation message is displayed. It accepts one p
 `rwmb_frontend_after_display_confirmation`
 
 This action fires after the confirmation message is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
+`rwmb_frontend_before_submit_button`
+
+This action fires before the submit button is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
+
+`rwmb_frontend_after_submit_button`
+
+This action fires after the submit button is displayed. It accepts one parameter `$config` - the form configuration, taken from the shortcode attributes.
 
 ### Form fitlers
 
@@ -235,7 +247,7 @@ add_filter( 'rwmb_frontend_post_title', function( $field ) {
 This action fires before the post is created or updated.
 
 ```
-do_action( 'rwmb_frontend_after_save_post', $object );
+do_action( 'rwmb_frontend_before_save_post', $object );
 ```
 
 The action accepts 1 parameter: the instance of the `MB_Frontend_Post` class, which handles the submission. It has the following public properties that you can use:

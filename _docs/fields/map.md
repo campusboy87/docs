@@ -19,8 +19,9 @@ Besides the [common settings](/field-settings/), this field has the following sp
 Name | Description
 --- | ---
 `api_key` | Google Maps API key. [Get here](https://developers.google.com/maps/documentation/javascript/get-api-key). Required.
+`language` | Google Maps language. Optional. Default is English. See [list of language code](https://developers.google.com/maps/faq#languagesupport).
 `region` | The region code, specified as a [country code top-level domain](https://en.wikipedia.org/wiki/Country_code_top-level_domain). This parameter returns autocompleted address results influenced by the region (typically the country) from the address field. [See here for more details](https://developers.google.com/maps/documentation/geocoding/intro#RegionCodes). Optional.
-`address_field` | The address field ID(s). Required.
+`address_field` | The ID of address field. For multiple address fields, enter field IDs separated by comma. Required.
 
 Note that in order to make the map works, you need to create a [text field](/fields/text/) for address and pass its ID to the map's `address_field`.
 
@@ -50,7 +51,7 @@ array(
     'address_field' => 'address',
 
     // Google API key
-    // 'api_key'       => 'XXXXXXXXX',
+    'api_key'       => 'XXXXXXXXX',
 ),
 ```
 
@@ -120,7 +121,7 @@ Read more about [rwmb_get_value()](/rwmb-get-value/).
 If you have a map inside a cloneable/non-cloneable group, then the helper functions above doesn't work. In that case, you can use a helper function in the plugin to show the map.
 
 ```php
-$group_values = rwmb( 'group_id' );
+$group_values = rwmb_meta( 'group_id' );
 // If group is cloneable
 foreach ( $group_values as $group_value ) {
     echo RWMB_Map_Field::render_map( $group_value['map_id'] );
